@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "campusfesthub278c28ae": {}
+      },
+      "api": {
+        "campusfesthubapi": {}
       }
     }
   }
