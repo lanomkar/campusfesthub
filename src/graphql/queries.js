@@ -20,6 +20,7 @@ export const getFest = /* GraphQL */ `
       events {
         items {
           id
+          festID
           eventName
           eventStartDate
           eventEndDate
@@ -30,7 +31,6 @@ export const getFest = /* GraphQL */ `
           imageUrlBanner
           createdAt
           updatedAt
-          festEventsId
           owner
           __typename
         }
@@ -83,6 +83,7 @@ export const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
     getEvent(id: $id) {
       id
+      festID
       eventName
       eventStartDate
       eventEndDate
@@ -116,7 +117,6 @@ export const getEvent = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      festEventsId
       owner
       __typename
     }
@@ -131,6 +131,7 @@ export const listEvents = /* GraphQL */ `
     listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        festID
         eventName
         eventStartDate
         eventEndDate
@@ -160,7 +161,61 @@ export const listEvents = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        festEventsId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const eventsByFestID = /* GraphQL */ `
+  query EventsByFestID(
+    $festID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    eventsByFestID(
+      festID: $festID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        festID
+        eventName
+        eventStartDate
+        eventEndDate
+        descriptionForinnerHTML
+        descriptionForEditting
+        eventMode
+        isPublished
+        imageUrlBanner
+        fest {
+          id
+          festName
+          collegeName
+          state
+          city
+          country
+          festStartDate
+          festEndDate
+          eventMode
+          isPublished
+          festDescription
+          imageUrlSmall
+          imageUrlBanner
+          createdAt
+          updatedAt
+          owner
+          __typename
+        }
+        createdAt
+        updatedAt
         owner
         __typename
       }

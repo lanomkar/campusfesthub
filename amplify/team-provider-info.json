@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-campusfesthub-dev-183810-authRole",
-      "UnauthRoleArn": "arn:aws:iam::887693101393:role/amplify-campusfesthub-dev-183810-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::887693101393:role/amplify-campusfesthub-dev-183810-authRole",
+      "AuthRoleName": "amplify-campusfesthub-dev-163805-authRole",
+      "UnauthRoleArn": "arn:aws:iam::887693101393:role/amplify-campusfesthub-dev-163805-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::887693101393:role/amplify-campusfesthub-dev-163805-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-campusfesthub-dev-183810-deployment",
-      "UnauthRoleName": "amplify-campusfesthub-dev-183810-unauthRole",
-      "StackName": "amplify-campusfesthub-dev-183810",
-      "StackId": "arn:aws:cloudformation:us-east-1:887693101393:stack/amplify-campusfesthub-dev-183810/26eecbf0-2a23-11ee-8a8d-129fe7869fc9",
-      "AmplifyAppId": "dft8swy3bbajl"
+      "DeploymentBucketName": "amplify-campusfesthub-dev-163805-deployment",
+      "UnauthRoleName": "amplify-campusfesthub-dev-163805-unauthRole",
+      "StackName": "amplify-campusfesthub-dev-163805",
+      "StackId": "arn:aws:cloudformation:us-east-1:887693101393:stack/amplify-campusfesthub-dev-163805/3301ae90-2e00-11ee-8b21-0a6ae594fa99",
+      "AmplifyAppId": "d22569wjeuzt8f"
     },
     "categories": {
       "auth": {
-        "campusfesthub278c28ae": {}
+        "campusfesthub966eb2e9": {}
       },
       "api": {
         "campusfesthubapi": {}

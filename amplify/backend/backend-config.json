@@ -7,26 +7,21 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "campusfesthub278c28ae"
+          "resourceName": "campusfesthub966eb2e9"
         }
       ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
             {
-              "apiKeyConfig": {
-                "apiKeyExpirationDate": "2023-07-31T13:25:45.590Z",
-                "apiKeyExpirationDays": 7,
-                "description": "\\"
-              },
-              "authenticationType": "API_KEY"
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authcampusfesthub966eb2e9"
+              }
             }
           ],
           "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authcampusfesthub278c28ae"
-            }
+            "authenticationType": "AWS_IAM"
           }
         }
       },
@@ -35,7 +30,7 @@
     }
   },
   "auth": {
-    "campusfesthub278c28ae": {
+    "campusfesthub966eb2e9": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {

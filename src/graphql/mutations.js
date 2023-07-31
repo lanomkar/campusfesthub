@@ -23,6 +23,7 @@ export const createFest = /* GraphQL */ `
       events {
         items {
           id
+          festID
           eventName
           eventStartDate
           eventEndDate
@@ -33,7 +34,6 @@ export const createFest = /* GraphQL */ `
           imageUrlBanner
           createdAt
           updatedAt
-          festEventsId
           owner
           __typename
         }
@@ -69,6 +69,7 @@ export const updateFest = /* GraphQL */ `
       events {
         items {
           id
+          festID
           eventName
           eventStartDate
           eventEndDate
@@ -79,7 +80,6 @@ export const updateFest = /* GraphQL */ `
           imageUrlBanner
           createdAt
           updatedAt
-          festEventsId
           owner
           __typename
         }
@@ -115,6 +115,7 @@ export const deleteFest = /* GraphQL */ `
       events {
         items {
           id
+          festID
           eventName
           eventStartDate
           eventEndDate
@@ -125,7 +126,6 @@ export const deleteFest = /* GraphQL */ `
           imageUrlBanner
           createdAt
           updatedAt
-          festEventsId
           owner
           __typename
         }
@@ -146,6 +146,7 @@ export const createEvent = /* GraphQL */ `
   ) {
     createEvent(input: $input, condition: $condition) {
       id
+      festID
       eventName
       eventStartDate
       eventEndDate
@@ -179,7 +180,6 @@ export const createEvent = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      festEventsId
       owner
       __typename
     }
@@ -192,6 +192,7 @@ export const updateEvent = /* GraphQL */ `
   ) {
     updateEvent(input: $input, condition: $condition) {
       id
+      festID
       eventName
       eventStartDate
       eventEndDate
@@ -225,7 +226,6 @@ export const updateEvent = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      festEventsId
       owner
       __typename
     }
@@ -238,6 +238,7 @@ export const deleteEvent = /* GraphQL */ `
   ) {
     deleteEvent(input: $input, condition: $condition) {
       id
+      festID
       eventName
       eventStartDate
       eventEndDate
@@ -271,7 +272,6 @@ export const deleteEvent = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      festEventsId
       owner
       __typename
     }

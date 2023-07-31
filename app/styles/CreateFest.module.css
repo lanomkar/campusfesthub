@@ -1,0 +1,146 @@
+.bannerImageContainer{  
+    position: relative;
+    width: 100%;
+    border: 1.5px dashed #000;
+    border-radius: 5px;
+}
+
+.bannerImageObjectURL{
+    width: 100%;
+    max-height: 290px; 
+}
+
+.defaultBannerImageContainer{
+    width: 100%;
+    min-height: 200px;
+    max-height: 350px;
+}
+
+.bannerImageCancelImage{
+    position: absolute; 
+    right: 0;
+    top: 0; 
+}
+
+.bannerImageClickBtn{
+    position: absolute;
+    right: 0; 
+    bottom: 0;
+}
+
+.smallImageContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.smallImageBox{
+    position: relative;
+    border: 1px dashed #000;
+    background-color:  #eee;
+    border-radius: 5px;
+}
+
+.smallImageObjectURL{
+    width: 150px;
+    max-height: 150px;
+}
+
+.smallDefaultImageBox{
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.smallImageCloseBtn{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.smallImageClickBtn{
+    position: absolute; 
+    right: 0; 
+    bottom: 0; 
+}
+
+.festDetailsContainer{
+    flex: 75%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.detailsFieldContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.detailsFieldContainerlabel{
+    margin-bottom: 10px;
+     font-weight: bold; 
+}
+
+.detailsFieldContainerDateDiv{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.detailsDateFieldWrapper{
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.detailsDateFieldContainerDiv{
+    margin-bottom: 10px;
+}
+
+.detailsDateFieldContainerLabel{
+    font-weight: bold;
+}
+
+.detailsFieldContainerInput{
+    width: 100%; 
+    border-color: #00b5ad !important;
+}
+
+.detailsFieldContainerDateField{
+    padding: .67857143em 1em;
+    border-radius:  .28571429rem;
+}
+
+.detailsFieldContainerTextArea{
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+}
+
+.smallImageWrapper{
+    flex: 25%;
+}
+
+
+@media (max-width: 680px){
+    .smallImageContainer{
+        flex-direction: column !important;
+    }
+
+    .createFestMainBox{
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        height: 150px;
+    }
+
+   .detailsFieldContainerDateDiv{
+    flex-direction: column;
+   }
+}

@@ -4,6 +4,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },
+  images: {
+    domains: ["kecsnyitwurnjbomwuos.supabase.co"],
+  },
 };
 
 module.exports = nextConfig;

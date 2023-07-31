@@ -1,0 +1,93 @@
+.createEventDetailsWrapper{ 
+    margin-top: 10px;
+}
+
+.eventNameLabelDiv{
+    font-size: 15px;
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+.eventNameInputDiv{
+    margin-bottom: 10px;
+}
+
+
+.datesRangeDiv{
+    display: flex;
+}
+
+.startDateDiv{
+    flex-grow: 1;
+}
+
+.endDateDiv{
+    flex-grow: 1;
+}
+
+.eventStartDateLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.eventEndDateLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.startDateInputDiv{
+    margin-bottom: 10px;
+}
+
+.endDateInputDiv{
+    margin-bottom: 10px;
+}
+
+.eventModeLabelDiv{
+    font-size: 15px;
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+.eventModeInputDiv{
+    margin-bottom: 10px;
+}
+
+.eventDescriptionLabelDiv{
+    font-size: 15px;
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+.eventDescriptionInputDiv{
+    margin-bottom: 10px;   
+    height: 500px;
+    width: 100%;
+    background-color: #fff;
+
+}
+
+.submitEventbtn{
+    margin-top: 80px;
+    margin-bottom: 60px; 
+}
+
+@media (max-width: 680px){
+    .datesRangeDiv{
+        flex-direction: column;
+    }
+
+    .submitEventbtn{
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 400px){
+    .submitEventbtn{
+        margin-top: 120px;
+    }
+}

@@ -1,0 +1,131 @@
+.editFestDetails{
+    margin-top: 10px;
+    display: flex;
+}
+
+.smallImageDiv{
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.smallImageWrapper{
+    position: relative;
+    border: 1px dashed #000;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.smallDefaultImageWrapper{
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.editFestInputDetailsWrapper{
+    width: 100%;
+}
+
+.firstNameLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.firstNameInputDiv{
+    margin-bottom: 10px;
+}
+
+.collegeNameLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.collegeNameInputDiv{
+    margin-bottom: 10px;
+}
+
+.stateNameLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stateNameInputDiv{
+    margin-bottom: 10px;
+}
+
+.cityNameLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cityNameInputDiv{
+    margin-bottom: 10px;
+}
+
+.datesRangeDiv{
+    display: flex;
+}
+
+.startDateDiv{
+    flex-grow: 1;
+}
+
+.endDateDiv{
+    flex-grow: 1;
+}
+
+.festStartDateLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.festEndDateLabelDiv{
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+.startDateInputDiv{
+    margin-bottom: 10px;
+}
+
+.endDateInputDiv{
+    margin-bottom: 10px;
+}
+
+.eventModeLabelDiv{
+    font-size: 15px;
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+.eventModeInputDiv{
+    margin-bottom: 10px;
+}
+
+.festDescriptionLabelDiv{
+    font-size: 15px;
+    font-weight: bold; 
+    margin-bottom: 10px;
+}
+
+.festDescriptionInputDiv{
+    margin-bottom: 10px;   
+}
+
+@media (max-width: 680px){
+    .editFestDetails{
+        flex-direction: column;
+    }
+    .datesRangeDiv{
+        flex-direction: column;
+    }
+}

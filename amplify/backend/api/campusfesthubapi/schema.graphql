@@ -4,7 +4,13 @@
 
 type Fest
   @model
-  @auth(rules: [{ allow: public, operations: [read] }, { allow: owner }]) {
+  @auth(
+    rules: [
+      { allow: public, operations: [read], provider: iam }
+      { allow: private, operations: [read], provider: iam }
+      { allow: owner }
+    ]
+  ) {
   id: ID!
   festName: String!
   collegeName: String!
@@ -18,13 +24,20 @@ type Fest
   festDescription: String!
   imageUrlSmall: String!
   imageUrlBanner: String!
-  events: [Event] @hasMany
+  events: [Event] @hasMany(indexName: "byFest", fields: ["id"])
 }
 
 type Event
   @model
-  @auth(rules: [{ allow: public, operations: [read] }, { allow: owner }]) {
+  @auth(
+    rules: [
+      { allow: public, operations: [read], provider: iam }
+      { allow: private, operations: [read], provider: iam }
+      { allow: owner }
+    ]
+  ) {
   id: ID!
+  festID: ID! @index(name: "byFest")
   eventName: String!
   eventStartDate: AWSDateTime!
   eventEndDate: AWSDateTime!
@@ -33,5 +46,5 @@ type Event
   eventMode: String!
   isPublished: Int!
   imageUrlBanner: String!
-  fest: Fest @belongsTo
+  fest: Fest @belongsTo(fields: ["festID"])
 }

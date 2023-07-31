@@ -4,15 +4,12 @@
     "apiName": "campusfesthubapi",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authcampusfesthub278c28ae"
+      "mode": "AWS_IAM"
     },
     "additionalAuthTypes": [
       {
-        "mode": "API_KEY",
-        "expirationTime": 7,
-        "apiKeyExpirationDate": "2023-07-31T13:25:45.590Z",
-        "keyDescription": "\\"
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authcampusfesthub966eb2e9"
       }
     ]
   }
