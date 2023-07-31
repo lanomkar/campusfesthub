@@ -1,20 +1,18 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Divider, Grid, Icon, Confirm, Button } from "semantic-ui-react";
-// import { useMutation, gql, useQuery } from "@apollo/client";
+import { Divider, Grid, Icon, Confirm } from "semantic-ui-react";
+
 import { useRouter } from "next/navigation";
-import Link from "next/navigation";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-import { API, Amplify, Storage, graphqlOperation } from "aws-amplify";
-import awsExports from "../../../../../../src/aws-exports";
-import { getEvent } from "../../../../../../src/graphql/queries";
-import { deleteEvent } from "../../../../../../src/graphql/mutations";
-// import { AuthContext } from "../../../../../../context/auth";
+import { API, Amplify } from "aws-amplify";
+import awsExports from "@/src/aws-exports";
+import { getEvent } from "@/src/graphql/queries";
+import { deleteEvent } from "@/src/graphql/mutations";
 
-import defaultImage from "../../../../../../public/defaultImageBanner.jpg";
+import defaultImage from "@/public/defaultImageBanner.jpg";
 
-import EventDetailComponent from "../../../../../components/EventDetailComponent";
+import EventDetailComponent from "@/app/components/EventDetailComponent";
 
 export default function Event({ params }) {
   Amplify.configure(awsExports);
@@ -28,11 +26,15 @@ export default function Event({ params }) {
 
   const [event, setEvent] = useState({});
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     fetchEvent();
   }, []);
 
   const fetchEvent = async () => {
+    setLoading(true);
     try {
       const eventData = await API.graphql({
         query: getEvent,
@@ -40,33 +42,61 @@ export default function Event({ params }) {
         variables: { id: params.eventid },
       });
       const event = eventData.data.getEvent;
-      console.log("event ", event);
+
       setEvent(event);
+      setError(null);
     } catch (error) {
       console.log("error on fetching events", error);
+      setError("error on fetching events");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleDeleteEventConfirm = async () => {
-    const deleteEventData = await API.graphql({
-      query: deleteEvent,
-      variables: {
-        input: {
-          id: params.eventid,
+    setLoading(true);
+    try {
+      const deleteEventData = await API.graphql({
+        query: deleteEvent,
+        variables: {
+          input: {
+            id: params.eventid,
+          },
         },
-      },
-      authMode: "AMAZON_COGNITO_USER_POOLS",
-    });
-    setOpenDeleteEventConfirm(false);
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+      });
+      setOpenDeleteEventConfirm(false);
+      setError(null);
+      router.push(`/me/fest/${params.festid}`);
+    } catch (error) {
+      console.log("error on fetching events", error);
+      setError("error on fetching events");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDeleteEventCancel = () => setOpenDeleteEventConfirm(false);
 
+  if (loading) {
+    return (
+      <div className="main-loading-div">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <h4>Loading...</h4>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div style={{ flex: "20%" }}>Empty</div>
-        <div style={{ flex: "60%" }}>
+        <div className="leftSideBar"></div>
+        <div className="centerScreen">
           <div
             style={{
               position: "relative",
@@ -135,7 +165,7 @@ export default function Event({ params }) {
             </div>
           </div>
         </div>
-        <div style={{ flex: "20%" }}>Empty</div>
+        <div className="rightSideBar"></div>
       </div>
       <br />
     </div>

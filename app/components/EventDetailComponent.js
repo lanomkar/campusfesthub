@@ -1,17 +1,6 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Icon,
-  Dropdown,
-  Button,
-  Confirm,
-  Popup,
-  Divider,
-} from "semantic-ui-react";
+import { Icon, Popup } from "semantic-ui-react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-// import { useMutation, gql, useQuery } from "@apollo/client";
 
 import { RWebShare } from "react-web-share";
 import {
@@ -25,32 +14,6 @@ import useIsTouchDevice from "../util/isMobileDevice";
 
 function EventDetailComponent({ eventprops: event, user, me }) {
   const isMobileDevice = useIsTouchDevice();
-  // const [event, setEvent] = useState(eventprops);
-  const options = [
-    { key: "publish", text: "Publish", value: 1 },
-    { key: "unpublish", text: "Unpublish", value: 0 },
-  ];
-
-  const router = useRouter();
-
-  const [openConfirm, setOpenConfirm] = useState(false);
-
-  const [isPublish, setIsPublish] = useState(0);
-
-  const show = () => setOpenConfirm(true);
-
-  // const handleConfirm = () => {
-  //   SubmitChangePublishStatus({
-  //     variables: {
-  //       ispublishevent: {
-  //         eventId: Number(event.id),
-  //         isPublished: Number(isPublish),
-  //       },
-  //     },
-  //     onCompleted: (data) => {},
-  //     errorPolicy: "all", // errorPolicy='all' =>  do not show error popup and error in console log
-  //   });
-  // };
 
   const handleCancel = () => setOpenConfirm(false);
 
@@ -61,11 +24,6 @@ function EventDetailComponent({ eventprops: event, user, me }) {
     var d = new Date(inputFormat);
     return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join("/");
   }
-
-  // const onClickIsPublish = (event, data) => {
-  //   setIsPublish(data.value);
-  //   show();
-  // };
 
   return (
     <>
@@ -175,33 +133,7 @@ function EventDetailComponent({ eventprops: event, user, me }) {
       </div>
       <div className="button-container">
         <div className="tags-container">
-          <div className="action-container">
-            {/* {me && event && user && event.userId == user.userId && (
-              <>
-                <Button.Group color={event.isPublished ? "teal" : "orange"}>
-                  <Button>{event.isPublished ? "Publish" : "Unpublish"}</Button>
-                  <Dropdown
-                    className="button icon"
-                    floating
-                    options={options}
-                    trigger={<></>}
-                    onChange={(e, data) => onClickIsPublish(e, data)}
-                  />
-                </Button.Group>
-                <Confirm
-                  open={openConfirm}
-                  content={
-                    "Do you want to " +
-                    (isPublish ? "publish " : "unpublish ") +
-                    event.eventName +
-                    " event"
-                  }
-                  onCancel={handleCancel}
-                  onConfirm={handleConfirm}
-                />
-              </>
-            )} */}
-          </div>
+          <div className="action-container"></div>
         </div>
 
         <div className="share-button-container">
@@ -256,35 +188,5 @@ function EventDetailComponent({ eventprops: event, user, me }) {
     </>
   );
 }
-
-// const CHANGE_PUBLISH_EVENT_STATUS = gql`
-//   mutation ChangeThePublishEventStatus($ispublishevent: IsPublishEventInput!) {
-//     changePublishEvent(ispublishevent: $ispublishevent) {
-//       msg
-//       status
-//     }
-//   }
-// `;
-
-// const FETCH_FEST_DETAILS = gql`
-//   query ($festId: ID!) {
-//     detailsOfFest(festId: $festId) {
-//       festId
-//       userId
-//       festName
-//       collegeName
-//       state
-//       city
-//       country
-//       festStartDate
-//       festEndDate
-//       eventMode
-//       isPublished
-//       festDescription
-//       imageUrlSmall
-//       imageUrlBanner
-//     }
-//   }
-// `;
 
 export default EventDetailComponent;

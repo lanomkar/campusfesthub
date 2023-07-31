@@ -1,18 +1,10 @@
 "use client";
-import {
-  Grid,
-  Icon,
-  Dropdown,
-  Button,
-  Confirm,
-  Popup,
-  Divider,
-} from "semantic-ui-react";
+import { Icon, Dropdown, Button, Confirm, Popup } from "semantic-ui-react";
 import { useRouter } from "next/navigation";
 
 import Image from "next/image";
 
-import defaultImageSmall from "../../public/defaultImageSmall.png";
+import defaultImageSmall from "@/public/defaultImageSmall.png";
 
 import { RWebShare } from "react-web-share";
 import {
@@ -22,10 +14,9 @@ import {
   TelegramIcon,
 } from "next-share";
 
-import useIsTouchDevice from "../util/isMobileDevice";
+import useIsTouchDevice from "@/app/util/isMobileDevice";
 
 function FestDetailComponent({ festprops: fest, events, user, me }) {
-  // console.log("FESTPROPS", festprops);
   const isMobileDevice = useIsTouchDevice();
   const options = [
     { key: "publish", text: "Publish", value: 1 },
@@ -33,12 +24,6 @@ function FestDetailComponent({ festprops: fest, events, user, me }) {
   ];
 
   const router = useRouter();
-
-  const show = () => setOpenConfirm(true);
-
-  const handleConfirm = () => {};
-
-  const handleCancel = () => setOpenConfirm(false);
 
   function convertDate(inputFormat) {
     function pad(s) {
@@ -48,28 +33,15 @@ function FestDetailComponent({ festprops: fest, events, user, me }) {
     return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join("/");
   }
 
-  const onClickIsPublish = (event, data) => {
-    setIsPublish(data.value);
-    show();
-  };
-
   return (
     <>
       <div className="fest-meta">
         <div className="individual-fest-header">
           <div className="college">
-            <div className="heading-festname">
-              {/* <Link
-                href={`/me/fest/${fest.festId}`}
-                className="view-detail-button"
-              > */}
-              {fest.festName}
-              {/* </Link> */}
-            </div>
+            <div className="heading-festname">{fest.festName}</div>
             <div className="heading-collegename">
               <p>{fest.collegeName}</p>
             </div>
-            {/*  */}
             <div className="individual-fest-location">
               <p className="individual-fest-text">
                 <Icon color="grey" name="map marker alternate" />
@@ -205,48 +177,9 @@ function FestDetailComponent({ festprops: fest, events, user, me }) {
       </div>
       <div className="button-container">
         <div className="tags-container">
-          <div className="action-container">
-            {me && user && fest.userId == user.userId && (
-              <>
-                <Button.Group color={fest.isPublished ? "teal" : "orange"}>
-                  <Button>{fest.isPublished ? "Publish" : "Unpublish"}</Button>
-                  <Dropdown
-                    className="button icon"
-                    floating
-                    options={options}
-                    trigger={<></>}
-                    onChange={(e, data) => onClickIsPublish(e, data)}
-                  />
-                </Button.Group>
-                <Confirm
-                  open={openConfirm}
-                  content={
-                    "Do you want to " +
-                    (isPublish ? "publish " : "unpublish ") +
-                    fest.festName +
-                    " fest"
-                  }
-                  onCancel={handleCancel}
-                  onConfirm={handleConfirm}
-                />
-              </>
-            )}
-          </div>
+          <div className="action-container"></div>
         </div>
-        {/* <div className="share-button-container">
-          <div>
-            <Popup
-              content="Share"
-              trigger={
-                <Icon
-                  color="grey"
-                  name="share alternate"
-                  onClick={() => }
-                />
-              }
-            />
-          </div>
-        </div> */}
+
         <div className="share-button-container">
           {isMobileDevice && (
             <div className="share-button-option">
@@ -300,35 +233,5 @@ function FestDetailComponent({ festprops: fest, events, user, me }) {
     </>
   );
 }
-
-// const CHANGE_PUBLISH_FEST_STATUS = gql`
-//   mutation ChangeThePublishFestStatus($ispublishfest: IsPublishFestInput!) {
-//     changePublishFest(ispublishfest: $ispublishfest) {
-//       msg
-//       status
-//     }
-//   }
-// `;
-
-// const FETCH_FEST_DETAILS = gql`
-//   query ($festId: ID!) {
-//     detailsOfFest(festId: $festId) {
-//       festId
-//       userId
-//       festName
-//       collegeName
-//       state
-//       city
-//       country
-//       festStartDate
-//       festEndDate
-//       eventMode
-//       isPublished
-//       festDescription
-//       imageUrlSmall
-//       imageUrlBanner
-//     }
-//   }
-// `;
 
 export default FestDetailComponent;

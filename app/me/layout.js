@@ -18,7 +18,6 @@ export default function MeLayout({
 
   useEffect(() => {
     if (route === "authenticated") {
-      // router.push("/me/fests");
     } else {
       router.push("/auth");
     }

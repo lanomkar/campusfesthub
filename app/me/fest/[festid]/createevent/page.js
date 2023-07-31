@@ -193,9 +193,16 @@ export default function CreateEvent({ params }) {
   return (
     <div>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div style={{ flex: "20%" }}></div>
-        <div style={{ flex: "60%" }}>
+        <div className="leftSideBar"></div>
+        <div className="centerScreen">
           <div>
+            <div>
+              {error && error.length > 0 && (
+                <h3 align="center" style={{ color: "red", padding: "10px" }}>
+                  {error}
+                </h3>
+              )}
+            </div>
             <div style={{ marginTop: "10px" }}>
               {/* ---------Banner Image Start------------ */}
               <div
@@ -366,7 +373,7 @@ export default function CreateEvent({ params }) {
             </div>
           </div>
         </div>
-        <div style={{ flex: "20%" }}></div>
+        <div className="rightSideBar"></div>
       </div>
     </div>
   );

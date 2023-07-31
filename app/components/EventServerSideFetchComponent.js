@@ -1,18 +1,11 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React,   from "react";
 import Image from "next/image";
-import { Divider, Grid, Icon, Confirm, Button } from "semantic-ui-react";
-import { NextSeo, EventJsonLd, ArticleJsonLd } from "next-seo";
-// import { useMutation, gql, useQuery } from "@apollo/client";
-import { API, Amplify, Storage, graphqlOperation } from "aws-amplify";
-import { getEvent } from "../../src//graphql/queries";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { Divider, } from "semantic-ui-react";
 
-// import { AuthContext } from "../context/auth";
+import defaultImage from "@/public/defaultImageBanner.jpg";
 
-import defaultImage from "../../public/defaultImageBanner.jpg";
-import EventDetailComponent from "./EventDetailComponent";
+import EventDetailComponent from "@/app/components/EventDetailComponent";
 
 function EventServerSideFetchComponent({ eventState }) {
   if (eventState) {
@@ -30,7 +23,6 @@ function EventServerSideFetchComponent({ eventState }) {
               maxHeight: "350px",
             }}
           >
-            {/* <Image src="/defaultImageBanner.jpg" alt="default banner image" /> */}
             {event && event.imageUrlBanner ? (
               <Image
                 src={`https://kecsnyitwurnjbomwuos.supabase.co/storage/v1/object/public/festbestbucket/${event.imageUrlBanner}`}
@@ -49,7 +41,6 @@ function EventServerSideFetchComponent({ eventState }) {
           </div>
 
           <div className="individual-fest individual-fest-container">
-            {/* user={user} */}
             <EventDetailComponent eventprops={event} me={false} />
 
             <Divider />

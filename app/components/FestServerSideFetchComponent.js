@@ -1,12 +1,11 @@
 "use client";
 import Image from "next/image";
-import { Divider, Grid, Icon, Confirm, Button } from "semantic-ui-react";
+import { Divider } from "semantic-ui-react";
 
-import defaultImage from "../../public/defaultImageBanner.jpg";
+import defaultImage from "@/public/defaultImageBanner.jpg";
 
-// import { AuthContext } from "../context/auth";
-import FestDetailComponent from "./FestDetailComponent";
-import EventComponent from "./EventComponent";
+import FestDetailComponent from "@/app/components/FestDetailComponent";
+import EventComponent from "@/app/components/EventComponent";
 
 function FestServerSideFetchComponent({ festDetails }) {
   if (festDetails) {
@@ -24,7 +23,6 @@ function FestServerSideFetchComponent({ festDetails }) {
               maxHeight: "350px",
             }}
           >
-            {/* <Image src="/defaultImageBanner.jpg" alt="default banner image" /> */}
             {fest && fest.imageUrlBanner ? (
               <Image
                 src={`https://kecsnyitwurnjbomwuos.supabase.co/storage/v1/object/public/festbestbucket/${fest.imageUrlBanner}`}
@@ -42,7 +40,6 @@ function FestServerSideFetchComponent({ festDetails }) {
             )}
           </div>
           <div className="individual-fest individual-fest-container">
-            {/* user={user} */}
             <FestDetailComponent
               festprops={fest}
               me={false}

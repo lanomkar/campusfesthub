@@ -23,34 +23,8 @@ import useIsTouchDevice from "../util/isMobileDevice";
 
 function FestComponent({ fest, me }) {
   const isMobileDevice = useIsTouchDevice();
-  // const userId = user && user.userId;
-  const options = [
-    { key: "publish", text: "Publish", value: 1 },
-    { key: "unpublish", text: "Unpublish", value: 0 },
-  ];
 
   const router = useRouter();
-
-  const [openConfirm, setOpenConfirm] = useState(false);
-
-  const [isPublish, setIsPublish] = useState(0);
-
-  const show = () => setOpenConfirm(true);
-
-  const handleConfirm = () => {
-    SubmitChangePublishStatus({
-      variables: {
-        ispublishfest: {
-          id: Number(fest.id),
-          isPublished: Number(isPublish),
-        },
-      },
-      onCompleted: (data) => {},
-      errorPolicy: "all", // errorPolicy='all' =>  do not show error popup and error in console log
-    });
-  };
-
-  const handleCancel = () => setOpenConfirm(false);
 
   function convertDate(inputFormat) {
     function pad(s) {
@@ -62,11 +36,6 @@ function FestComponent({ fest, me }) {
       .toString();
   }
 
-  const onClickIsPublish = (event, data) => {
-    setIsPublish(data.value);
-    show();
-  };
-
   return (
     <Link href={me ? `/me/fest/${fest.id}` : `/fests/${fest.id}`}>
       <div className="individual-fest cursor-pointer-div">
@@ -74,12 +43,7 @@ function FestComponent({ fest, me }) {
           <div className="individual-fest-header">
             <div className="college">
               <div className="heading-festname underline-link">
-                {/* <Link
-                href={me ? `/me/fest/${fest.id}` : `/fests/${fest.id}`}
-                className="view-detail-button"
-              > */}
                 {fest.festName}
-                {/* </Link> */}
               </div>
               <div className="heading-collegename">
                 <p>{fest.collegeName}</p>
@@ -220,35 +184,7 @@ function FestComponent({ fest, me }) {
         </div>
         <div className="button-container">
           <div className="tags-container">
-            <div className="action-container">
-              {/* {me && user && fest.userId == user.userId && (
-                <>
-                  <Button.Group color={fest.isPublished ? "teal" : "orange"}>
-                    <Button>
-                      {fest.isPublished ? "Publish" : "Unpublish"}
-                    </Button>
-                    <Dropdown
-                      className="button icon"
-                      floating
-                      options={options}
-                      trigger={<></>}
-                      onChange={(e, data) => onClickIsPublish(e, data)}
-                    />
-                  </Button.Group>
-                  <Confirm
-                    open={openConfirm}
-                    content={
-                      "Do you want to " +
-                      (isPublish ? "publish " : "unpublish ") +
-                      fest.festName +
-                      " fest"
-                    }
-                    onCancel={handleCancel}
-                    onConfirm={handleConfirm}
-                  />
-                </>
-              )} */}
-            </div>
+            <div className="action-container"></div>
           </div>
           <div className="share-button-container">
             {isMobileDevice && (

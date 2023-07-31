@@ -66,7 +66,7 @@ export default function FestDetailsPage({ params }) {
       setFests(festList);
       setError(null);
     } catch (error) {
-      console.log("error on fetching songs", error);
+      console.log("error on fetching fests", error);
       setError("Error on fetching fest");
     } finally {
       setLoading(false);
@@ -89,7 +89,7 @@ export default function FestDetailsPage({ params }) {
   return (
     <div>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div className="leftSideBar">Filters</div>
+        <div className="leftSideBar"></div>
         <div className="centerScreen">
           <>
             <div>
@@ -135,16 +135,6 @@ export default function FestDetailsPage({ params }) {
                 {fests && user && (
                   <>
                     <div className="fest-control-options-container">
-                      {/* <div className="fest-control-option">
-                        <Link
-                          href={`/me/fest/${data.detailsOfFest.festId}/edit`}
-                        >
-                          <button className="ui blue button">
-                            <Icon name="edit outline" />
-                            Edit
-                          </button>
-                        </Link>
-                      </div> */}
                       <div className="fest-control-option">
                         <button
                           className="ui red button"
@@ -197,7 +187,7 @@ export default function FestDetailsPage({ params }) {
             <br />
           </>
         </div>
-        <div className="rightSideBar">Hello</div>
+        <div className="rightSideBar"></div>
       </div>
     </div>
   );

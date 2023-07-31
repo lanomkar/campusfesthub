@@ -4,17 +4,10 @@ import { deserializeModel } from "@aws-amplify/datastore/ssr";
 import { headers } from "next/headers";
 import { API, Amplify, withSSRContext } from "aws-amplify";
 import FestServerSideFetchComponent from "@/app/components/FestServerSideFetchComponent";
-// import getFestDetails from "@/lib/fetchAPI/getFestDetails";
-
-// <FestServerSideFetchComponent
-//  festId={params.festid}
-//   festDetails={festDetails}
-// />
 
 Amplify.configure({ ...awsExports, ssr: true });
 
 export async function generateMetadata({ params: { festid } }) {
-  // Fetch data based on params.festId
   const req = {
     headers: {
       cookie: headers().get("cookie"),
@@ -46,15 +39,18 @@ export default async function FestWithEventList({ params: { festid } }) {
     authMode: "AWS_IAM",
     variables: { id: festid },
   });
-  console.log("FLKDSF ++> ", festData);
 
   if (festData && festData.data && festData.data.getFest) {
     return (
       <>
-        <h2>{festData.data.getFest.festName}</h2>
+        <div style={{ marginBottom: "10px" }}></div>
         <FestServerSideFetchComponent festDetails={festData.data.getFest} />
       </>
     );
   }
-  return <h2>NOT FOUND</h2>;
+  return (
+    <h3 align="center" style={{ color: "red", padding: "10px" }}>
+      Something went wrong when fetching data
+    </h3>
+  );
 }

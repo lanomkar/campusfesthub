@@ -1,37 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-  API,
-  Amplify,
-  Storage,
-  graphqlOperation,
-  AuthModeStrategyType,
-} from "aws-amplify";
-import Link from "next/link";
-import {
-  Input,
-  Button,
-  Icon,
-  Grid,
-  Dropdown,
-  Select,
-  TextArea,
-  Dimmer,
-  Loader,
-  Segment,
-} from "semantic-ui-react";
-import { listFests } from "../../src/graphql/queries";
+import { API, Amplify } from "aws-amplify";
 
-import awsExports from "../../src/aws-exports";
+import { listFests } from "@/src/graphql/queries";
+
+import awsExports from "@/src/aws-exports";
 import FestComponent from "@/app/components/FestComponent";
 export default function FestListPage() {
-  //   Amplify.configure({
-  //     ...awsExports,
-  //     DataStore: {
-  //       authModeStrategyType: AuthModeStrategyType.MULTI_AUTH,
-  //     },
-  //   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   Amplify.configure(awsExports);
   const router = useRouter();
   const [fests, setFests] = useState([]);
@@ -41,41 +20,43 @@ export default function FestListPage() {
   }, []);
 
   const fetchFests = async () => {
+    setLoading(true);
     try {
-      //   const festData =  await API.graphql({ query: listFests });
       const festData = await API.graphql({
         query: listFests,
         authMode: "AWS_IAM",
       });
       const festList = festData.data.listFests.items;
-      console.log("fest list", festList);
+      setError(null);
       setFests(festList);
     } catch (error) {
-      console.log("error on fetching songs", error);
+      console.log("error on fetching fest lists", error);
+      setError("error on fetching fest lists");
+    } finally {
+      setLoading(false);
     }
   };
   return (
     <div>
-      <div>
-        <h2>Fest Lists</h2>
-        <div>
-          <button onClick={() => router.push("/me/createFest")}>
-            Create Fest
-          </button>
-        </div>
-      </div>
-
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div style={{ flex: "20%" }}>Filters</div>
+        <div className="leftSideBar"></div>
         <div style={{ flex: "60%" }}>
-          <div style={{ marginTop: "20px" }}>
+          <div className="centerScreen">
+            <div>
+              {error && error.length > 0 && (
+                <h3 align="center" style={{ color: "red", padding: "10px" }}>
+                  {error}
+                </h3>
+              )}
+            </div>
+            <div style={{ marginBottom: "10px" }}></div>
             {fests &&
               fests.map((fest) => {
                 return <FestComponent fest={fest} key={fest.id} me={false} />;
               })}
           </div>
         </div>
-        <div style={{ flex: "20%" }}>Hello</div>
+        <div className="rightSideBar"></div>
       </div>
     </div>
   );
