@@ -1,7 +1,7 @@
 "use client";
-import React,   from "react";
+import React from "react";
 import Image from "next/image";
-import { Divider, } from "semantic-ui-react";
+import { Divider } from "semantic-ui-react";
 
 import defaultImage from "@/public/defaultImageBanner.jpg";
 
