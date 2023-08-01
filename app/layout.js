@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "semantic-ui-css/semantic.min.css";
 import "./styles/globals.css";
 import CustomAmplifyAuthProvider from "./CustomAmplifyAuthProvider";
+import MenuBar from "./components/MenuBar";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +17,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CustomAmplifyAuthProvider>{children}</CustomAmplifyAuthProvider>
+        <CustomAmplifyAuthProvider>
+          <nav>
+            <MenuBar />
+          </nav>
+          {children}
+          <Footer />
+        </CustomAmplifyAuthProvider>
       </body>
     </html>
   );

@@ -23,21 +23,7 @@ export default function Auth() {
     }
   }, [route]);
   return (
-    <div>
-      <div>
-        <nav>
-          <div>
-            <div>Logo</div>
-            <div>
-              {route !== "authenticated" ? (
-                <span onClick={() => router.push("/auth")}>Signin/Signup</span>
-              ) : (
-                <span onClick={signOut}>Logout</span>
-              )}
-            </div>
-          </div>
-        </nav>
-      </div>
+    <div style={{ marginTop: "16px" }}>
       <Authenticator />
     </div>
   );

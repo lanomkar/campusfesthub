@@ -267,7 +267,7 @@ export default function CreateFestPage() {
   return (
     <div style={{ backgroundColor: "#fff" }}>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div className="leftSideBar">Empty</div>
+        <div className="leftSideBar"></div>
         <div className="centerScreen">
           <div>
             {/* ---------Banner Image Start------------ */}
@@ -617,7 +617,7 @@ export default function CreateFestPage() {
             </div>
           </div>
         </div>
-        <div className="rightSideBar">Empty</div>
+        <div className="rightSideBar"></div>
       </div>
     </div>
   );

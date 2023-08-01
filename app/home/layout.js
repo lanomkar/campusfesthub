@@ -1,13 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-import Link from "next/link";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { useRouter } from "next/navigation";
 import "semantic-ui-css/semantic.min.css";
 
-export default function MeLayout({
+export default function HomeLayout({
   children, // will be a page or nested layout
 }) {
   const router = useRouter();
@@ -19,8 +18,8 @@ export default function MeLayout({
 
   useEffect(() => {
     if (route === "authenticated") {
+      console.log("USER IS AUTHENTICATED");
     } else {
-      router.push("/auth");
     }
   }, [route]);
   return <section>{children}</section>;

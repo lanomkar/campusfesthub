@@ -62,14 +62,14 @@ export default function FestListsPage() {
           backgroundColor: "#fff",
         }}
       >
-        <div style={{ flex: "20%" }}>Filters</div>
-        <div style={{ flex: "60%" }}>
+        <div className="leftSideBar"></div>
+        <div className="centerScreen">
           {error && error.length > 0 && <h3 align="center">{error}</h3>}
           {!error && (
             <div className={festStyles.createNewFestContainer}>
               <Button
                 color="teal"
-                onClick={() => router.push("/me/createFest")}
+                onClick={() => router.push("/me/createfest")}
               >
                 Create New Fest
               </Button>
@@ -82,7 +82,7 @@ export default function FestListsPage() {
               })}
           </div>
         </div>
-        <div style={{ flex: "20%" }}>Hello</div>
+        <div className="rightSideBar"></div>
       </div>
     </div>
   );

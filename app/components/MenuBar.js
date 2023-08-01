@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+"use client";
+import React, { useState } from "react";
 import { Container, Menu } from "semantic-ui-react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-
-import { AuthContext } from "../context/auth";
-
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import { useRouter } from "next/navigation";
 import { Dropdown, Icon } from "semantic-ui-react";
 
 const trigger = (
@@ -13,11 +11,15 @@ const trigger = (
   </span>
 );
 
-function MenuBar() {
+export default function MenuBar() {
   const { pathname } = useRouter();
-  const router = useRouter();
-  const { user, logout } = useContext(AuthContext);
 
+  const { route, signOut } = useAuthenticator((context) => [
+    context.route,
+    context.user,
+  ]);
+  console.log("MY ROUTE USER => ", route);
+  const router = useRouter();
   const [activeItem, setActiveItem] = useState(pathname);
 
   const handleItemClick = (name) => {
@@ -26,23 +28,11 @@ function MenuBar() {
   };
 
   const clickedOnLogout = () => {
-    logout();
-    router.push("/auth/signin");
+    signOut();
+    router.push("/auth");
   };
 
   const options = [
-    // {
-    //   key: "user",
-    //   text: (
-    //     <span>
-    //       Signed in as <strong>Bob Smith</strong>
-    //     </span>
-    //   ),
-    //   disabled: true,
-    // },
-    // { key: "profile", text: "Your Profile" },
-    // { key: "stars", text: "Your Stars" },
-    // { key: "explore", text: "Explore" },
     {
       key: "my-fests",
       text: (
@@ -69,19 +59,7 @@ function MenuBar() {
         </div>
       ),
     },
-    {
-      key: "change-password",
-      text: (
-        <div
-          style={{
-            padding: "0.78571429em 1.14285714em",
-          }}
-          onClick={() => handleItemClick("/auth/changepassword")}
-        >
-          Change Password
-        </div>
-      ),
-    },
+
     {
       key: "log-out",
       text: (
@@ -97,51 +75,8 @@ function MenuBar() {
     },
   ];
 
-  const menuBar = user ? (
-    <Menu pointing secondary size="massive" color="teal" className="main-menu">
-      <Container>
-        {/* <Link href="/me/fests"> */}
-        <Menu.Item
-          name={"FestBest.in"}
-          as="a"
-          active={activeItem === "/fests"}
-          onClick={() => handleItemClick("/fests")}
-        />
-        {/* </Link> */}
-        <Menu.Menu position="right">
-          <Menu.Item
-            name="My fests"
-            as="a"
-            active={activeItem === "/me/fests"}
-            onClick={() => handleItemClick("/me/fests")}
-          />
-          {/*  <Menu.Item
-            className="createFestMenuBar"
-            name="Create fest"
-            active={activeItem === "/me/createfest"}
-            onClick={() => handleItemClick("/me/createfest")}
-            as="a"
-          />
-          <Menu.Item name="logout" onClick={clickedOnLogout} /> */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "10px",
-              marginLeft: "8px",
-            }}
-          >
-            <Dropdown
-              className="myDropdownmenu"
-              trigger={trigger}
-              options={options}
-            />
-          </div>
-        </Menu.Menu>
-      </Container>
-    </Menu>
-  ) : (
-    <div>
+  const menuBar =
+    route === "authenticated" ? (
       <Menu
         pointing
         secondary
@@ -150,40 +85,80 @@ function MenuBar() {
         className="main-menu"
       >
         <Container>
-          {/* <Link href="/fests"> */}
           <Menu.Item
-            name="home"
-            active={activeItem === "/" || activeItem === "/fests"}
-            onClick={() => handleItemClick("/fests")}
+            name={"CampusFestHub"}
             as="a"
-            to="/"
+            active={activeItem === "/home"}
+            onClick={() => handleItemClick("/home")}
           />
-          {/* </Link> */}
 
+          <Menu.Item
+            name={"Fests"}
+            as="a"
+            active={activeItem === "/fests"}
+            onClick={() => handleItemClick("/fests")}
+          />
           <Menu.Menu position="right">
-            {/* <Link href="/auth/signin"> */}
             <Menu.Item
-              name="login"
-              active={activeItem === "/auth/signin"}
-              onClick={() => handleItemClick("/auth/signin")}
+              name="My fests"
               as="a"
+              active={activeItem === "/me/fests"}
+              onClick={() => handleItemClick("/me/fests")}
             />
-            {/* </Link> */}
-            {/* <Link href="/auth/register"> */}
-            <Menu.Item
-              name="register"
-              active={activeItem === "/auth/register"}
-              onClick={() => handleItemClick("/auth/register")}
-              as="a"
-            />
-            {/* </Link> */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginRight: "10px",
+                marginLeft: "8px",
+              }}
+            >
+              <Dropdown
+                className="myDropdownmenu"
+                trigger={trigger}
+                options={options}
+              />
+            </div>
           </Menu.Menu>
         </Container>
       </Menu>
-    </div>
-  );
+    ) : (
+      <div>
+        <Menu
+          pointing
+          secondary
+          size="massive"
+          color="teal"
+          className="main-menu"
+        >
+          <Container>
+            <Menu.Item
+              name="CampusFestHub"
+              active={activeItem === "/" || activeItem === "/home"}
+              onClick={() => handleItemClick("/home")}
+              as="a"
+              to="/"
+            />
+
+            <Menu.Item
+              name={"Fests"}
+              as="a"
+              active={activeItem === "/fests"}
+              onClick={() => handleItemClick("/fests")}
+            />
+
+            <Menu.Menu position="right">
+              <Menu.Item
+                name="Sigin"
+                active={activeItem === "/auth"}
+                onClick={() => handleItemClick("/auth")}
+                as="a"
+              />
+            </Menu.Menu>
+          </Container>
+        </Menu>
+      </div>
+    );
 
   return menuBar;
 }
-
-export default MenuBar;

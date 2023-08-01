@@ -1,5 +1,5 @@
 "use client";
-import festStyles from "@/app/styles/Fest.module.css";
+import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from "@aws-amplify/ui-react";
 export default function CustomAmplifyAuthProvider({ children, auth }) {
   return (
