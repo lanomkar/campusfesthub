@@ -21,11 +21,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import createFestStyles from "@/app/styles/CreateFest.module.css";
 
-import { createFest } from "../../../src/graphql/mutations";
+import { createFest } from "@/src/graphql/mutations";
 
-import defaultImage from "../../../public/defaultImageBanner.jpg";
-import defaultImageSmall from "../../../public/defaultImageSmall.png";
-import awsExports from "../../../src/aws-exports";
+import defaultImage from "@/public/defaultImageBanner.jpg";
+import defaultImageSmall from "@/public/defaultImageSmall.png";
+import awsExports from "@/src/aws-exports";
 export default function CreateFestPage() {
   Amplify.configure(awsExports);
   const router = useRouter();
@@ -443,17 +443,31 @@ export default function CreateFestPage() {
                   Country Name
                 </label>
                 <div>
-                  <Dropdown
-                    options={countryData}
-                    placeholder="Select Country"
-                    search
-                    selection
-                    className={createFestStyles.detailsFieldContainerInput}
-                    fluid
-                    id="country"
-                    name="country"
-                    onChange={handleCountryChange}
-                  />
+                  {countryData && countryData.length > 0 ? (
+                    <Dropdown
+                      options={countryData}
+                      placeholder="Select Country"
+                      search
+                      selection
+                      className={createFestStyles.detailsFieldContainerInput}
+                      fluid
+                      id="country"
+                      name="country"
+                      onChange={handleCountryChange}
+                    />
+                  ) : (
+                    <Dropdown
+                      options={[]}
+                      placeholder="Select Country"
+                      search
+                      selection
+                      className={createFestStyles.detailsFieldContainerInput}
+                      fluid
+                      id="country"
+                      name="country"
+                      onChange={handleCountryChange}
+                    />
+                  )}
                 </div>
               </div>
               {/* Country dropdown end */}

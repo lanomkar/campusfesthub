@@ -47,7 +47,7 @@ export default function MenuBar() {
       ),
     },
     {
-      key: "createfest",
+      key: "create-fest",
       text: (
         <div
           style={{
