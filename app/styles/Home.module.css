@@ -1,3 +1,80 @@
+.wrapper{
+   display: flex; 
+   flex-direction: row;
+  }
+
+.homeContainer{
+  display: flex;
+  flex: 50%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content{
+  padding: 0px; 
+  margin:0px;
+  margin-bottom: 7px;
+}
+.contentTag{
+  padding: 0px;
+   margin: 0px;
+    text-align: right;
+}
+
+.btngroups{
+  margin-top: 40px;
+}
+
+.btnStyle{
+  margin-right: 11px;
+}
+
+.imageWrapper{
+  display: block;
+  flex:50%;
+}
+
+.imageClass{
+  width: 550px;
+  height: 550px;
+}
+
+.imageContainerDiv{
+  width: 100%;
+  min-height: 600px;
+  max-height: 600px;
+}
+
+@media (max-width: 1100px) {
+  .homeContainer{
+    padding:12px;
+  }
+}
+
+@media (max-width: 940px) {
+  .imageContainerDiv{
+    width: 100% !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
+  }
+
+  .imageClass{
+    width: 290px;
+    height: 290px;
+  }
+}
+
+@media (max-width: 720px) {
+  .homeContainer{
+    flex:100%;
+    margin-top: 20px;
+  }
+  .imageWrapper{
+    display: none !important;
+  }
+}
+
 .container {
   padding: 0 2rem;
 }

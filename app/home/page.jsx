@@ -4,15 +4,9 @@ import Image from "next/image";
 import { Amplify } from "aws-amplify";
 import awsExports from "@/src/aws-exports";
 import collegestudents from "@/public/collegestudents.jpg";
-import {
-  Input,
-  Button,
-  Icon,
-  Dropdown,
-  Select,
-  TextArea,
-} from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import { useRouter } from "next/navigation";
+import styles from "@/app/styles/Home.module.css";
 
 export default function HomePage() {
   Amplify.configure(awsExports);
@@ -27,29 +21,15 @@ export default function HomePage() {
   };
   return (
     <div>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <div
-          style={{
-            display: "flex",
-            flex: "50%",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <h2 style={{ padding: "0px", margin: "0px", marginBottom: "7px" }}>
+      <div className={styles.wrapper}>
+        <div className={styles.homeContainer}>
+          <h2 className={styles.content}>
             Unlock the World of College Fests and Events
           </h2>
-          <h3 style={{ padding: "0px", margin: "0px", textAlign: "right" }}>
-            - Welcome to CampusFestHub!
-          </h3>
-          <div
-            style={{
-              marginTop: "40px",
-            }}
-          >
+          <h3 className={styles.contentTag}>- Welcome to CampusFestHub!</h3>
+          <div className={styles.btngroups}>
             <Button
-              style={{ marginRight: "11px" }}
+              className={styles.btnStyle}
               type="button"
               color="teal"
               onClick={handleFindFest}
@@ -66,15 +46,12 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-        <div style={{ display: "block", flex: "50%" }}>
-          <div
-            style={{ width: "100%", minHeight: "600px", maxHeight: "600px" }}
-          >
+        <div className={styles.imageWrapper}>
+          <div className={styles.imageContainerDiv}>
             <Image
               src={collegestudents}
+              className={styles.imageClass}
               alt="college students image"
-              width="550"
-              height="550"
             />
           </div>
         </div>
